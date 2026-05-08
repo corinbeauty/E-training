@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>不老松中清店 - 勞工教育訓練系統</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f3f4f6; }
+        .section-card { @apply bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden mb-10 transition-all hover:shadow-lg; }
+        .brand-bg { background-color: #1a4d2e; }
+        .brand-text { color: #1a4d2e; }
+        canvas { touch-action: none; cursor: crosshair; }
+        .signature-pad { border: 2px dashed #d1d5db; border-radius: 1rem; background-color: #fdfdfd; }
+        
+        /* 流程圖樣式 */
+        .flow-step { @apply relative flex flex-col items-center text-center p-4 bg-gray-50 rounded-xl border border-gray-200; }
+        .flow-arrow { @apply hidden md:flex items-center justify-center text-gray-300 text-2xl; }
+    </style>
+</head>
+<body class="text-gray-800 pb-20">
+
+    <!-- 配置區：GitHub 圖片連結與 Firebase 配置 -->
+    <script>
+        // 圖檔名稱配置
+        const imagePaths = {
+            logo: "1000033771.jpg", 
+            safetySop: "安全作業標準.jpg",
+            harassment: "性騷防治.jpg",
+            hocl: "次氯酸水.jpg",
+            alcohol: "酒精.jpg"
+        };
+
+        // Firebase 配置
+        const firebaseConfig = {
+            apiKey: "AIzaSyBfS9CJMmhQfFkNB3mwco5apc9rDpp3ipw",
+            authDomain: "e-training-a6d4c.firebaseapp.com",
+            projectId: "e-training-a6d4c",
+            storageBucket: "e-training-a6d4c.firebasestorage.app",
+            messagingSenderId: "96150516095",
+            appId: "1:96150516095:web:750f1f466560642ec92a4a",
+            measurementId: "G-VB3WWZ8PYL"
+        };
+    </script>
+
+    <!-- 頂部導航與統計 -->
+    <header class="brand-bg text-white shadow-xl sticky top-0 z-50">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="bg-white p-1 rounded-full w-14 h-14 flex items-center justify-center shadow-inner">
+                    <img id="img-logo" src="" alt="Logo" class="w-11 h-11 object-contain">
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold tracking-tight">不老松中清店</h1>
+                    <div class="flex items-center text-[10px] opacity-80 space-x-2">
+                        <span class="bg-white/20 px-2 py-0.5 rounded">勞工教育訓練</span>
+                        <span class="bg-white/20 px-2 py-0.5 rounded">2026 年度更新</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-black/20 px-4 py-2 rounded-2xl text-center min-w-[100px]">
+                <div id="completeCount" class="text-2xl font-bold leading-none">0</div>
+                <div class="text-[10px] opacity-70 mt-1 uppercase">已完成人數</div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-10">
+        
+        <!-- 前言 -->
+        <div class="mb-12 text-center max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold brand-text mb-4">訓練宗旨與職業安全定義</h2>
+            <p class="text-gray-600 leading-relaxed text-sm md:text-base">
+                本教育訓練旨在落實「安全第一、預防為先」之核心價值。透過標準作業程序 (SOP) 的建立與化學品安全教育，確保每位同仁在提供優質服務的同時，能有效規避職業風險，並建立相互尊重的友善職場環境。
+            </p>
+        </div>
+
+        <!-- 模組一：煮茶安全與 SOP -->
+        <section class="section-card">
+            <div class="bg-red-700 text-white px-8 py-5 flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-fire-alt mr-4 text-2xl"></i>
+                    <div>
+                        <h2 class="text-lg font-bold">模組一：煮茶安全作業標準 (SOP)</h2>
+                        <p class="text-xs opacity-80">防止熱源意外與食品交叉污染</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="font-bold text-red-700 text-lg mb-3 border-l-4 border-red-700 pl-3">職業安全定義</h3>
+                            <p class="text-sm text-gray-600 leading-relaxed">
+                                熱源作業屬於高風險環境。操作人員必須具備高度專注力，在加熱過程中嚴禁進行聊天、使用手機或擅離職守等行為，以防止空燒引發火災。
+                            </p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="bg-red-50 p-4 rounded-2xl border border-red-100">
+                                <h4 class="font-bold text-red-800 text-sm mb-2">操作前檢核 (Pre-Check)</h4>
+                                <ul class="text-xs space-y-2 text-red-900/80 list-disc pl-4">
+                                    <li>檢查瓦斯軟管有無龜裂、接頭處是否緊固。</li>
+                                    <li>確保爐台上及周遭無雜物，尤其是抹布與紙類。</li>
+                                </ul>
+                            </div>
+                            <div class="bg-amber-50 p-4 rounded-2xl border border-amber-100 text-amber-900">
+                                <h4 class="font-bold text-sm mb-2">操作中規範</h4>
+                                <ul class="text-xs space-y-2 opacity-80 list-disc pl-4">
+                                    <li><strong>視線不離開：</strong> 開火後，人員應在視線可及範圍內監控。</li>
+                                    <li><strong>禁止覆蓋：</strong> 嚴禁將抹布放置在加熱中的鍋蓋上。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col justify-center">
+                        <img id="img-safetySop" src="" alt="SOP 教材" class="w-full rounded-2xl shadow-md border">
+                    </div>
+                </div>
+
+                <div class="mt-10 pt-10 border-t border-gray-100">
+                    <h4 class="text-center font-bold text-gray-700 mb-8 text-sm md:text-base">煮茶標準作業流程序圖</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-9 gap-4 items-center">
+                        <div class="flow-step md:col-span-1">
+                            <p class="text-[10px] font-bold">1. 檢查設備</p>
+                        </div>
+                        <div class="flow-arrow md:col-span-1"><i class="fas fa-long-arrow-alt-right"></i></div>
+                        <div class="flow-step md:col-span-1">
+                            <p class="text-[10px] font-bold">2. 加水開火</p>
+                        </div>
+                        <div class="flow-arrow md:col-span-1"><i class="fas fa-long-arrow-alt-right"></i></div>
+                        <div class="flow-step md:col-span-1 border-blue-500 bg-blue-50 shadow-sm">
+                            <p class="text-[10px] font-bold font-bold">3. 全程監控</p>
+                        </div>
+                        <div class="flow-arrow md:col-span-1"><i class="fas fa-long-arrow-alt-right"></i></div>
+                        <div class="flow-step md:col-span-1">
+                            <p class="text-[10px] font-bold">4. 沸騰熄火</p>
+                        </div>
+                        <div class="flow-arrow md:col-span-1"><i class="fas fa-long-arrow-alt-right"></i></div>
+                        <div class="flow-step md:col-span-1">
+                            <p class="text-[10px] font-bold">5. 清潔復原</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 模組二：性騷擾防治 -->
+        <section class="section-card">
+            <div class="brand-bg text-white px-8 py-5 flex items-center">
+                <i class="fas fa-users-slash mr-4 text-2xl"></i>
+                <div>
+                    <h2 class="text-lg font-bold">模組二：職場性騷擾防治與宣導</h2>
+                    <p class="text-xs opacity-80">尊重個體界線，維護專業尊嚴</p>
+                </div>
+            </div>
+            <div class="p-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+                    <div class="flex flex-col">
+                        <img id="img-harassment" src="" alt="性騷擾防治" class="w-full rounded-2xl shadow-md border mb-4">
+                    </div>
+                    <div class="space-y-6">
+                        <div class="bg-green-50 p-6 rounded-2xl border border-green-100">
+                            <h3 class="font-bold text-green-800 text-lg mb-4 flex items-center">
+                                <i class="fas fa-check-double mr-2"></i> 本店零容忍政策
+                            </h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start">
+                                    <div class="bg-green-200 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-xs mr-3 mt-1 shrink-0">1</div>
+                                    <p class="text-sm"><strong>肢體尊重：</strong> 僅提供專業、必要之服務接觸。嚴禁任何不當肢體碰觸。</p>
+                                </div>
+                                <div class="flex items-start">
+                                    <div class="bg-green-200 text-green-800 rounded-full w-6 h-6 flex items-center justify-center text-xs mr-3 mt-1 shrink-0">2</div>
+                                    <p class="text-sm"><strong>專業口吻：</strong> 禁止開帶有性暗示之玩笑、評論體態或私人穿著。</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 border-2 border-dashed border-red-200 rounded-2xl">
+                            <h4 class="text-sm font-bold text-red-700 mb-2 italic">申訴管道</h4>
+                            <p class="text-xs text-gray-600">若遭受不當情況，請立即向現場主管反應。我們承諾絕對保密並公正調查。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 模組三：化學品安全 -->
+        <section class="section-card">
+            <div class="bg-blue-600 text-white px-8 py-5 flex items-center">
+                <i class="fas fa-hand-holding-droplet mr-4 text-2xl"></i>
+                <div>
+                    <h2 class="text-lg font-bold">模組三：化學品與消毒劑安全使用</h2>
+                    <p class="text-xs opacity-80">正確濃度，安全防護</p>
+                </div>
+            </div>
+            <div class="p-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <!-- 次氯酸水 -->
+                    <div class="space-y-4">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full mr-3">HOCl</span>
+                            <h3 class="text-xl font-bold brand-text">次氯酸水安全規範</h3>
+                        </div>
+                        <img id="img-hocl" src="" class="w-full rounded-xl border shadow-sm object-cover">
+                        <div class="bg-blue-50 p-4 rounded-xl border border-blue-100 text-xs text-blue-900">
+                            <strong>嚴禁混用：</strong> 不得與酸性清潔劑（如鹽酸）混用，避免產生劇毒氯氣。
+                        </div>
+                    </div>
+
+                    <!-- 酒精 -->
+                    <div class="space-y-4">
+                        <div class="flex items-center mb-2">
+                            <span class="bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full mr-3">75% Alcohol</span>
+                            <h3 class="text-xl font-bold brand-text">75% 酒精安全規範</h3>
+                        </div>
+                        <img id="img-alcohol" src="" class="w-full rounded-xl border shadow-sm object-cover">
+                        <div class="bg-red-50 p-4 rounded-xl border border-red-100 text-xs text-red-900">
+                            <strong>高度易燃：</strong> 嚴禁在明火旁噴灑。室內使用請保持環境通風。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 簽名與上傳 -->
+        <section id="signature-section" class="bg-white rounded-[3rem] p-10 md:p-16 border-4 border-[#1a4d2e] shadow-2xl relative overflow-hidden">
+            <div class="max-w-2xl mx-auto text-center relative z-10">
+                <div class="mb-8">
+                    <i class="fas fa-file-signature text-6xl brand-text mb-6"></i>
+                    <h2 class="text-3xl font-bold brand-text">培訓確認簽署</h2>
+                    <p class="text-gray-500 mt-4 leading-relaxed text-sm">
+                        本人確認已詳閱並理解「不老松中清店」教育訓練內容，並承諾在職務期間嚴格遵守相關作業安全與職場倫理規範。
+                    </p>
+                </div>
+
+                <div class="space-y-8 text-left">
+                    <div class="group">
+                        <label class="block text-sm font-bold text-gray-700 mb-2 ml-2">員工姓名</label>
+                        <input type="text" id="userName" placeholder="請輸入全名" 
+                               class="w-full px-6 py-4 rounded-2xl border-2 border-gray-200 focus:border-[#1a4d2e] focus:ring-4 focus:ring-[#1a4d2e]/10 outline-none transition-all text-lg shadow-inner">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2 ml-2">手寫電子簽名</label>
+                        <div class="signature-pad relative shadow-inner">
+                            <canvas id="signatureCanvas" width="600" height="300" class="w-full h-64 rounded-2xl bg-white"></canvas>
+                            <div class="absolute bottom-4 right-4 flex space-x-2">
+                                <button onclick="clearSignature()" class="bg-gray-100 hover:bg-gray-200 text-gray-600 text-xs px-4 py-2 rounded-xl transition-all shadow-sm">
+                                    <i class="fas fa-eraser mr-1"></i> 清除重寫
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="submitSignature()" id="submitBtn" 
+                            class="w-full brand-bg text-white font-bold py-5 rounded-2xl shadow-xl hover:scale-[1.01] active:scale-95 transition-all text-xl flex items-center justify-center">
+                        <span>完成確認並上傳紀錄</span>
+                        <i class="fas fa-check-circle ml-3"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 記錄表 -->
+        <section class="mt-20">
+            <div class="flex items-center justify-between mb-8">
+                <h3 class="text-2xl font-bold flex items-center brand-text">
+                    <i class="fas fa-history mr-3"></i>
+                    培訓簽署名單
+                </h3>
+            </div>
+            
+            <div class="bg-white rounded-3xl shadow-sm border border-gray-200 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead class="bg-gray-50 border-b border-gray-100">
+                            <tr>
+                                <th class="px-8 py-5 text-xs font-bold text-gray-400 uppercase tracking-wider">姓名</th>
+                                <th class="px-8 py-5 text-xs font-bold text-gray-400 uppercase tracking-wider">確認簽名</th>
+                                <th class="px-8 py-5 text-xs font-bold text-gray-400 uppercase tracking-wider">紀錄時間</th>
+                            </tr>
+                        </thead>
+                        <tbody id="signatureList" class="divide-y divide-gray-50">
+                            <tr>
+                                <td colspan="3" class="px-8 py-16 text-center text-gray-400 italic">
+                                    正在同步數據...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="text-center py-12 text-gray-400 text-xs border-t border-gray-200 bg-gray-50 mt-20">
+        不老松中清店 教育訓練暨職安管理組
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, onSnapshot, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // 設定圖片
+        document.getElementById('img-logo').src = imagePaths.logo;
+        document.getElementById('img-safetySop').src = imagePaths.safetySop;
+        document.getElementById('img-harassment').src = imagePaths.harassment;
+        document.getElementById('img-hocl').src = imagePaths.hocl;
+        document.getElementById('img-alcohol').src = imagePaths.alcohol;
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = "bulasong-training-center";
+
+        const canvas = document.getElementById('signatureCanvas');
+        const ctx = canvas.getContext('2d');
+        let isDrawing = false;
+
+        const setCanvasSize = () => {
+            const rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+            // 由於 CSS 會縮放 Canvas，這裡我們需要確保繪圖比例正確
+            ctx.scale(1, 1);
+        };
+        window.addEventListener('resize', setCanvasSize);
+        setCanvasSize();
+
+        const getPos = (e) => {
+            const rect = canvas.getBoundingClientRect();
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            const clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            return { x: clientX - rect.left, y: clientY - rect.top };
+        };
+
+        const drawStart = (e) => {
+            isDrawing = true;
+            const { x, y } = getPos(e);
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            if (e.type === 'touchstart') e.preventDefault();
+        };
+
+        const drawMove = (e) => {
+            if (!isDrawing) return;
+            const { x, y } = getPos(e);
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = '#1a4d2e';
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            if (e.type === 'touchmove') e.preventDefault();
+        };
+
+        canvas.addEventListener('mousedown', drawStart);
+        canvas.addEventListener('mousemove', drawMove);
+        window.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('touchstart', drawStart);
+        canvas.addEventListener('touchmove', drawMove);
+        canvas.addEventListener('touchend', () => isDrawing = false);
+
+        window.clearSignature = () => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        };
+
+        window.submitSignature = async () => {
+            const name = document.getElementById('userName').value.trim();
+            if (!name) return alert("請輸入員工姓名");
+            const sigData = canvas.toDataURL();
+            if (sigData.length < 5000) return alert("請完成手寫簽名");
+
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>處理中...';
+
+            try {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'signatures'), {
+                    name, signature: sigData, timestamp: serverTimestamp()
+                });
+                alert("上傳成功！");
+                document.getElementById('userName').value = '';
+                clearSignature();
+            } catch (e) {
+                alert("失敗：" + e.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerText = '完成確認並上傳紀錄';
+            }
+        };
+
+        const sync = async () => {
+            await signInAnonymously(auth);
+            onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'signatures'), (snap) => {
+                const list = document.getElementById('signatureList');
+                const count = document.getElementById('completeCount');
+                const docs = snap.docs.map(d => d.data());
+                docs.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+                count.innerText = docs.length;
+
+                if (docs.length === 0) {
+                    list.innerHTML = '<tr><td colspan="3" class="px-8 py-16 text-center text-gray-400">尚無紀錄</td></tr>';
+                    return;
+                }
+                list.innerHTML = docs.map(d => `
+                    <tr class="hover:bg-gray-50">
+                        <td class="px-8 py-6 font-bold text-gray-700">${d.name}</td>
+                        <td class="px-8 py-6"><img src="${d.signature}" class="h-10 object-contain"></td>
+                        <td class="px-8 py-6 text-xs text-gray-400">${d.timestamp ? new Date(d.timestamp.seconds * 1000).toLocaleString() : '處理中'}</td>
+                    </tr>
+                `).join('');
+            });
+        };
+        sync();
+    </script>
+</body>
+</html>

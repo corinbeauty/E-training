@@ -13,7 +13,7 @@
         .brand-text { color: #1a4d2e; }
         .section-card { @apply bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden mb-12 transition-all hover:shadow-xl; }
         
-        /* 流程圖樣式 */
+        /* 流程圖樣式優化 */
         .flow-step { @apply flex flex-col items-center justify-center text-center p-3 bg-gray-50 rounded-2xl border border-gray-200 text-[12px] font-bold shadow-sm transition-all; }
         .flow-step span { @apply text-[9px] opacity-50 block mb-1 uppercase tracking-tighter; }
         .flow-arrow { @apply hidden md:flex items-center justify-center text-gray-300; }
@@ -68,12 +68,14 @@
     <script>
         // 教材資源配置
         const imagePaths = {
-            logo: "logo.png", 
+            logo: "1000033771.jpg", 
             safetySop: "1000033765.png",
             harassment: "1000033773.png",
-            hocl: "次氯酸水.jpg",
-            alcohol: "酒精.jpg",
-            fireExt: "滅火器.png",
+            hocl: "1000033878.png",
+            alcohol: "1000033881.png",
+            hocl_safety: "1000033844.png",
+            alcohol_safety: "1000033879.png",
+            fireExt: "滅火器.png", // 若無上傳則需替換正確檔名
             fireAlarm: "受信總機.jpg"
         };
 
@@ -89,7 +91,7 @@
         };
     </script>
 
-    <!-- 頂部狀態導航 -->
+    <!-- 頂部導航 -->
     <header class="brand-bg text-white shadow-2xl sticky top-0 z-50">
         <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center space-x-4">
@@ -158,7 +160,7 @@
                 </div>
 
                 <div class="mt-8 pt-12 border-t border-gray-100 text-center">
-                    <h4 class="font-bold text-gray-700 mb-10 text-base md:text-xl tracking-widest">標準作業流程序圖</h4>
+                    <h4 class="font-bold text-gray-700 mb-10 text-base md:text-xl tracking-widest text-[14px]">標準作業流程序圖</h4>
                     <div class="grid grid-cols-1 md:grid-cols-9 gap-4 items-center max-w-4xl mx-auto px-2">
                         <div class="flow-step md:col-span-1 border-gray-200"><span>Step 1</span>環境確認</div>
                         <div class="flow-arrow md:col-span-1"><i class="fas fa-chevron-right"></i></div>
@@ -194,6 +196,9 @@
                                 <p>● <strong>數位禮儀：</strong> 嚴禁未經同意傳送不雅貼圖訊息，或擅自側拍、側錄。</p>
                             </div>
                         </div>
+                        <div class="p-6 border-2 border-dashed border-red-200 rounded-3xl bg-red-50/20">
+                            <p class="text-[12px] text-gray-500 font-medium">不老松採零容忍立場，若遭受或目擊不當行為請立即通報主管。公司保證絕對保密並維護當事人權益。</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -212,16 +217,17 @@
                             <span class="bg-blue-600 text-white px-3 py-1 rounded-lg text-xs mr-3 shadow-sm">HOCl</span> 次氯酸水安全細則
                         </h3>
                         <p class="text-sm text-gray-600 leading-relaxed font-medium">
-                            強效除菌劑，<strong>嚴禁混用</strong>酸性清潔劑（如鹽酸、漂白水），避免產生劇毒氯氣。應避光存放於陰涼處以維持藥效。
+                            強效除菌劑，<strong>嚴禁混用</strong>酸性清潔劑，避免產生劇毒氯氣。應避光存放於陰涼處以維持藥效。
                         </p>
-                        <img id="img-hocl" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover">
+                        <img id="img-hocl" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover mb-4">
+                        <img id="img-hocl-safety" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover">
                     </div>
                     <div class="space-y-6">
                         <h3 class="text-xl font-bold brand-text flex items-center border-b pb-2">
                             <span class="bg-red-600 text-white px-3 py-1 rounded-lg text-xs mr-3 shadow-sm">75% Alc</span> 酒精危害預防
                         </h3>
                         <div class="space-y-4">
-                            <p class="text-sm text-gray-700 font-bold border-l-4 border-red-600 pl-4 leading-relaxed italic">
+                            <p class="text-sm text-gray-700 font-bold border-l-4 border-red-600 pl-4 leading-relaxed italic text-red-600">
                                 酒精閃火點極低（約 13°C）。室內大量噴灑時必須保持良好通風。
                             </p>
                             <div class="bg-red-50 p-6 rounded-[2rem] border border-red-100 text-[12px] text-red-900 shadow-sm">
@@ -235,6 +241,7 @@
                                 </ul>
                             </div>
                             <img id="img-alcohol" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover mt-6 shadow-2xl">
+                            <img id="img-alcohol-safety" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover mt-4 shadow-2xl">
                         </div>
                     </div>
                 </div>
@@ -261,7 +268,7 @@
                                 <span class="w-2 h-6 bg-slate-700 mr-3 rounded-full"></span> 設備判讀與功能定義
                             </h3>
                             <p class="text-sm text-gray-600 leading-relaxed text-justify font-medium">
-                                受信總機為建築物消防安全的神經中樞。當感應器偵測到異常煙霧或高溫時，總機會立即發出警報並顯示受災樓層。同仁必須熟悉指示燈號，以利正確判讀。
+                                受信總機為建築物消防安全的神經中樞。當感應器偵測到異常煙霧或高溫時，總機會立即發出警報並顯示受災樓層。
                             </p>
                         </div>
                         <div class="space-y-6">
@@ -291,10 +298,10 @@
                         <div class="absolute -right-4 -bottom-4 text-white/5 text-9xl"><i class="fas fa-fire"></i></div>
                         <h4 class="text-lg font-bold mb-8 border-b border-white/20 pb-4 flex items-center justify-center md:justify-start tracking-widest"><i class="fas fa-running mr-3 text-orange-400"></i> PASS 滅火四步驟</h4>
                         <div class="space-y-8 text-sm relative z-10">
-                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">P</div><div><p class="font-bold text-orange-200 text-base">Pull (拉)</p><p class="text-[11px] opacity-70">拉開插梢</p></div></div>
-                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">A</div><div><p class="font-bold text-orange-200 text-base">Aim (瞄)</p><p class="text-[11px] opacity-70">瞄準火源根部</p></div></div>
-                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">S</div><div><p class="font-bold text-orange-200 text-base">Squeeze (壓)</p><p class="text-[11px] opacity-70">壓下手把噴灑</p></div></div>
-                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">S</div><div><p class="font-bold text-orange-200 text-base">Sweep (掃)</p><p class="text-[11px] opacity-70">左右掃射覆蓋</p></div></div>
+                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">P</div><div><p class="font-bold text-orange-200 text-base">Pull (拉)</p><p class="text-[11px] opacity-70 text-left">拉開插梢</p></div></div>
+                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">A</div><div><p class="font-bold text-orange-200 text-base">Aim (瞄)</p><p class="text-[11px] opacity-70 text-left">瞄準火源根部</p></div></div>
+                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">S</div><div><p class="font-bold text-orange-200 text-base">Squeeze (壓)</p><p class="text-[11px] opacity-70 text-left">壓下手把噴灑</p></div></div>
+                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">S</div><div><p class="font-bold text-orange-200 text-base">Sweep (掃)</p><p class="text-[11px] opacity-70 text-left">左右掃射覆蓋</p></div></div>
                         </div>
                     </div>
                     <img id="img-fireExt" src="" alt="滅火器操作" class="w-full rounded-[2.5rem] shadow-xl border border-stone-100">
@@ -306,16 +313,19 @@
         <section id="signature-section" class="mt-20 bg-white rounded-[4rem] p-10 md:p-20 border-4 border-[#1a4d2e] shadow-2xl relative overflow-hidden">
             <div class="max-w-3xl mx-auto text-center relative z-10">
                 <i class="fas fa-file-signature text-7xl brand-text mb-8"></i>
-                <h2 class="text-3xl font-extrabold brand-text mb-6 tracking-tighter">參與培訓聲明與確認</h2>
-                <p class="text-gray-500 mb-12 text-sm leading-relaxed font-medium">本人確認已詳閱並充分理解以上教育訓練內容，並承諾落實於職務作業中，確保自身與同仁之安全。</p>
+                <h2 class="text-3xl font-extrabold brand-text mb-6 tracking-tighter uppercase">參與培訓聲明與確認</h2>
+                <p class="text-gray-500 mb-12 text-sm leading-relaxed font-medium px-4">本人確認已詳閱並充分理解以上教育訓練內容，並承諾落實於職務作業中，確保自身與同仁之安全。</p>
 
                 <div class="space-y-10 text-left max-w-xl mx-auto">
                     <div>
-                        <label class="block text-sm font-bold text-gray-700 mb-3 ml-2 flex items-center"><i class="fas fa-user-check mr-2 text-[#1a4d2e]"></i> 簽署人員姓名 (正楷全名)</label>
-                        <input type="text" id="userName" placeholder="請輸入姓名" class="w-full px-8 py-5 rounded-3xl border-2 border-gray-100 focus:border-[#1a4d2e] focus:ring-8 focus:ring-[#1a4d2e]/5 outline-none text-2xl shadow-inner bg-gray-50/50 font-bold tracking-widest">
+                        <label class="block text-sm font-bold text-gray-700 mb-3 ml-2 flex items-center">
+                            <i class="fas fa-user-check mr-2 text-[#1a4d2e]"></i> 簽署人員姓名 (正楷全名)
+                        </label>
+                        <input type="text" id="userName" placeholder="請輸入姓名" 
+                               class="w-full px-8 py-5 rounded-3xl border-2 border-gray-100 focus:border-[#1a4d2e] focus:ring-8 focus:ring-[#1a4d2e]/5 outline-none text-2xl shadow-inner bg-gray-50/50 font-bold tracking-widest transition-all">
                     </div>
 
-                    <div id="signature-preview-box" class="hidden w-full h-44 bg-white rounded-[2.5rem] border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden mb-6 shadow-inner transition-all duration-700">
+                    <div id="signature-preview-box" class="hidden w-full h-48 bg-white rounded-[2.5rem] border-2 border-dashed border-gray-200 flex items-center justify-center overflow-hidden mb-6 shadow-inner transition-all duration-700">
                         <img id="sig-preview-img" class="h-full object-contain mix-blend-multiply scale-90">
                     </div>
 
@@ -330,11 +340,15 @@
             </div>
         </section>
 
-        <!-- 紀錄清單 -->
+        <!-- 歷史紀錄名單 -->
         <section class="mt-28 mb-10 px-2">
             <div class="flex items-center justify-between mb-8 px-4">
-                <h3 class="text-2xl font-bold flex items-center brand-text"><i class="fas fa-clipboard-list mr-3"></i> 培訓簽署名單匯整</h3>
-                <button onclick="openAdminModal()" id="mgr-btn" class="text-xs bg-gray-200 px-5 py-2 rounded-full font-bold hover:bg-gray-300 transition-all border border-gray-300">主管管理模式：已關閉</button>
+                <h3 class="text-2xl font-bold flex items-center brand-text">
+                    <i class="fas fa-clipboard-list mr-3"></i> 培訓簽署名單匯整
+                </h3>
+                <button onclick="openAdminModal()" id="mgr-btn" class="text-xs bg-gray-200 px-5 py-2 rounded-full font-bold hover:bg-gray-300 transition-all border border-gray-300">
+                    主管管理模式：已關閉
+                </button>
             </div>
             
             <div class="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden">
@@ -361,34 +375,40 @@
     <div id="admin-modal-overlay" class="modal-overlay">
         <div id="admin-modal-content" class="modal-content">
             <div class="text-center">
-                <div id="modal-icon-bg" class="w-16 h-16 brand-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"><i id="modal-icon" class="fas fa-user-shield text-2xl"></i></div>
+                <div id="modal-icon-bg" class="w-16 h-16 brand-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg">
+                    <i id="modal-icon" class="fas fa-user-shield text-2xl"></i>
+                </div>
                 <h3 id="modal-title" class="text-xl font-bold brand-text mb-2 tracking-tight">管理權限驗證</h3>
                 <p id="modal-desc" class="text-[10px] text-gray-400 mb-6 font-medium">請輸入管理密碼以開啟核對功能</p>
-                <div id="password-wrapper"><input type="password" id="admin-password" class="w-full text-center px-4 py-4 rounded-2xl border-2 border-gray-100 focus:border-[#1a4d2e] outline-none text-2xl tracking-[0.5em] font-bold mb-6 bg-gray-50/50"></div>
+                <div id="password-wrapper"><input type="password" id="admin-password" placeholder="" class="w-full text-center px-4 py-4 rounded-2xl border-2 border-gray-100 focus:border-[#1a4d2e] outline-none text-2xl tracking-[0.5em] font-bold mb-6 bg-gray-50/50"></div>
                 <p id="modal-error" class="text-red-500 text-[10px] mb-4 hidden">驗證失敗，請重新輸入</p>
                 <div id="modal-btn-group" class="flex space-x-3">
-                    <button onclick="closeAdminModal()" class="flex-1 py-3.5 bg-gray-100 text-gray-500 rounded-2xl font-bold text-sm">取消</button>
-                    <button id="modal-confirm-btn" onclick="verifyAdmin()" class="flex-1 py-3.5 brand-bg text-white rounded-2xl font-bold text-sm shadow-lg active:scale-95">驗證並開啟</button>
+                    <button onclick="closeAdminModal()" class="flex-1 py-3.5 bg-gray-100 text-gray-500 rounded-2xl font-bold text-sm transition-all hover:bg-gray-200">取消</button>
+                    <button id="modal-confirm-btn" onclick="verifyAdmin()" class="flex-1 py-3.5 brand-bg text-white rounded-2xl font-bold text-sm transition-all shadow-lg active:scale-95">驗證並開啟</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- 頁尾 -->
+    <!-- 底部操作建議 -->
     <footer class="mt-20 border-t border-gray-200 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 py-16">
             <div class="bg-blue-50/50 border border-blue-100 rounded-3xl p-6 md:p-10 mb-10 shadow-inner">
                 <div class="flex items-start space-x-5">
-                    <div class="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-lg"><i class="fas fa-mobile-alt text-xl"></i></div>
+                    <div class="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-lg">
+                        <i class="fas fa-mobile-alt text-xl"></i>
+                    </div>
                     <div>
                         <h4 class="font-bold text-blue-900 mb-2">操作建議備註：</h4>
-                        <p class="text-xs text-blue-800/80 leading-relaxed font-medium">建議同仁使用外部瀏覽器（如 <span class="font-bold border-b-2 border-blue-300">Google Chrome</span> 或 <span class="font-bold border-b-2 border-blue-300">Safari</span>），以便縮放頁面與教材圖片。</p>
+                        <p class="text-xs text-blue-800/80 leading-relaxed font-medium">
+                            建議同仁使用外部瀏覽器開啟（如 <span class="font-bold border-b-2 border-blue-300 text-blue-900">Google Chrome</span> 或 <span class="font-bold border-b-2 border-blue-300 text-blue-900">Safari</span>）。透過外部瀏覽器開啟可以自由縮放頁面文字及教材圖片。
+                        </p>
                     </div>
                 </div>
             </div>
             <div class="text-center space-y-6">
                 <p class="text-[11px] font-bold brand-text uppercase tracking-[0.4em]">不老松中清店 教育訓練暨職業安全組</p>
-                <p class="text-[9px] text-gray-400 tracking-widest font-light">2026 OCCUPATIONAL SAFETY & HEALTH SYSTEM</p>
+                <p class="text-[9px] text-gray-400 tracking-widest font-light">2026 OCCUPATIONAL SAFETY & HEALTH MANAGEMENT SYSTEM</p>
             </div>
         </div>
     </footer>
@@ -396,40 +416,57 @@
     <!-- 簽名 Overlay -->
     <div id="sig-overlay">
         <div class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-[10001] pointer-events-none">
-            <div class="bg-black/70 text-white text-[10px] px-6 py-2 rounded-full pointer-events-auto backdrop-blur-md font-bold tracking-wider">請橫向旋轉手機以啟用最大書寫空間</div>
+            <div class="bg-black/70 text-white text-[10px] px-6 py-2 rounded-full pointer-events-auto backdrop-blur-md font-bold tracking-wider border border-white/10 shadow-2xl">
+                <i class="fas fa-sync-alt fa-spin mr-2"></i> 請橫向旋轉手機以啟用最大書寫空間
+            </div>
             <div class="flex space-x-4 pointer-events-auto">
-                <button onclick="clearCanvas()" class="bg-red-500 text-white px-8 py-3 rounded-2xl text-sm font-bold shadow-2xl">清除</button>
-                <button onclick="finishSignature()" class="bg-[#1a4d2e] text-white px-8 py-3 rounded-2xl text-sm font-bold shadow-2xl">完成</button>
+                <button onclick="clearCanvas()" class="bg-red-500 text-white px-8 py-3 rounded-2xl text-sm font-bold shadow-2xl border border-white/20 active:scale-95">清除</button>
+                <button onclick="finishSignature()" class="bg-[#1a4d2e] text-white px-8 py-3 rounded-2xl text-sm font-bold shadow-2xl border border-white/20 active:scale-95">完成</button>
             </div>
         </div>
-        <div id="sig-canvas-container" class="flex-1 flex items-center justify-center overflow-hidden bg-gray-50/50"><canvas id="sig-canvas"></canvas></div>
+        <div id="sig-canvas-container" class="flex-1 flex items-center justify-center overflow-hidden bg-gray-50/50">
+            <canvas id="sig-canvas"></canvas>
+        </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, onSnapshot, query, serverTimestamp, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { initializeFirestore, collection, addDoc, onSnapshot, query, serverTimestamp, updateDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // 掛載圖片
-        document.getElementById('img-logo').src = imagePaths.logo;
-        document.getElementById('img-safetySop').src = imagePaths.safetySop;
-        document.getElementById('img-harassment').src = imagePaths.harassment;
-        document.getElementById('img-hocl').src = imagePaths.hocl;
-        document.getElementById('img-alcohol').src = imagePaths.alcohol;
-        document.getElementById('img-fireExt').src = imagePaths.fireExt;
-        document.getElementById('img-fireAlarm').src = imagePaths.fireAlarm;
+        // 圖片掛載
+        const setImages = () => {
+            document.getElementById('img-logo').src = imagePaths.logo;
+            document.getElementById('img-safetySop').src = imagePaths.safetySop;
+            document.getElementById('img-harassment').src = imagePaths.harassment;
+            document.getElementById('img-hocl').src = imagePaths.hocl;
+            document.getElementById('img-alcohol').src = imagePaths.alcohol;
+            document.getElementById('img-hocl-safety').src = imagePaths.hocl_safety;
+            document.getElementById('img-alcohol-safety').src = imagePaths.alcohol_safety;
+            document.getElementById('img-fireExt').src = imagePaths.fireExt;
+            document.getElementById('img-fireAlarm').src = imagePaths.fireAlarm;
+        };
+        setImages();
 
+        // Firebase 初始化
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
-        const db = getFirestore(app);
-        const appId = "bulasong-osh-v2026-final";
+        
+        // --- 修正連線錯誤的核心變更 ---
+        // 使用 initializeFirestore 並強制開啟 Long Polling 解決 WebSocket 連線問題
+        const db = initializeFirestore(app, {
+            experimentalForceLongPolling: true,
+            useFetchStreams: false // 增進相容性
+        });
+        
+        const appId = "bulasong-osh-2026"; 
 
         const canvas = document.getElementById('sig-canvas');
         const ctx = canvas.getContext('2d');
         const overlay = document.getElementById('sig-overlay');
         let isDrawing = false, lastSigData = null, isAdmin = false, isAuthReady = false;
 
-        // Modal 邏輯
+        // Modal 系統
         const modalOverlay = document.getElementById('admin-modal-overlay');
         const passwordInput = document.getElementById('admin-password');
         const passwordWrapper = document.getElementById('password-wrapper');
@@ -444,18 +481,26 @@
             modalOverlay.style.display = 'flex';
             setTimeout(() => modalOverlay.classList.add('modal-active'), 10);
             modalTitle.innerText = title; modalDesc.innerText = desc; errorMsg.classList.add('hidden');
+
             if (type === 'admin') {
-                passwordWrapper.classList.remove('hidden'); modalIcon.className = "fas fa-user-shield text-2xl";
+                passwordWrapper.classList.remove('hidden');
+                modalIcon.className = "fas fa-user-shield text-2xl";
                 modalIconBg.className = "w-16 h-16 brand-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg";
-                modalConfirmBtn.innerText = "驗證並開啟"; modalConfirmBtn.onclick = () => verifyAdmin(); passwordInput.focus();
+                modalConfirmBtn.innerText = "驗證並開啟";
+                modalConfirmBtn.onclick = () => verifyAdmin();
+                passwordInput.focus();
             } else if (type === 'warning') {
-                passwordWrapper.classList.add('hidden'); modalIcon.className = "fas fa-exclamation-triangle text-2xl";
-                modalIconBg.className = "w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg";
-                modalConfirmBtn.innerText = "我知道了"; modalConfirmBtn.onclick = () => closeAdminModal();
+                passwordWrapper.classList.add('hidden');
+                modalIcon.className = "fas fa-exclamation-triangle text-2xl";
+                modalIconBg.className = "w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg";
+                modalConfirmBtn.innerText = "我知道了";
+                modalConfirmBtn.onclick = () => closeAdminModal();
             } else if (type === 'success') {
-                passwordWrapper.classList.add('hidden'); modalIcon.className = "fas fa-check-circle text-2xl";
+                passwordWrapper.classList.add('hidden');
+                modalIcon.className = "fas fa-check-circle text-2xl";
                 modalIconBg.className = "w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg";
-                modalConfirmBtn.innerText = "完成"; modalConfirmBtn.onclick = () => { closeAdminModal(); if(callback) callback(); };
+                modalConfirmBtn.innerText = "完成並關閉";
+                modalConfirmBtn.onclick = () => { closeAdminModal(); if(callback) callback(); };
             }
         };
 
@@ -469,7 +514,7 @@
                 refreshList();
                 return;
             }
-            showSystemModal('admin', '管理權限驗證', '請輸入密碼以開啟核對功能');
+            showSystemModal('admin', '管理權限驗證', '請輸入管理密碼以開啟核對功能');
         };
 
         window.closeAdminModal = () => {
@@ -486,7 +531,9 @@
                 document.getElementById('mgr-head').classList.remove('hidden');
                 closeAdminModal(); refreshList();
             } else {
-                errorMsg.classList.remove('hidden'); passwordInput.value = ''; passwordInput.focus();
+                errorMsg.classList.remove('hidden');
+                passwordInput.value = '';
+                passwordInput.focus();
             }
         };
 
@@ -494,75 +541,126 @@
 
         // 簽名邏輯
         window.openSignature = () => {
-            if(!document.getElementById('userName').value.trim()) return showSystemModal('warning', '系統提示', '請先輸入姓名！');
-            overlay.style.display = 'flex'; resizeCanvas();
+            const name = document.getElementById('userName').value.trim();
+            if(!name) {
+                showSystemModal('warning', '系統提示', '請先輸入正楷人員全名後，再進行電子簽名驗證！');
+                return;
+            }
+            overlay.style.display = 'flex';
+            resizeCanvas();
         };
 
         function resizeCanvas() {
             const isPortrait = window.innerHeight > window.innerWidth;
             canvas.width = isPortrait ? window.innerHeight : window.innerWidth;
             canvas.height = isPortrait ? window.innerWidth : window.innerHeight;
-            ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 5; ctx.strokeStyle = '#1a4d2e';
+            ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 6; ctx.strokeStyle = '#1a4d2e';
         }
 
         const getPos = (e) => {
             const rect = canvas.getBoundingClientRect();
-            let cX = e.clientX || (e.touches && e.touches[0].clientX), cY = e.clientY || (e.touches && e.touches[0].clientY);
-            if (window.innerHeight > window.innerWidth) return { x: cY - rect.top, y: rect.right - cX };
-            return { x: cX - rect.left, y: cY - rect.top };
+            let clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            let clientY = e.clientY || (e.touches && e.touches[0].clientY);
+            if (window.innerHeight > window.innerWidth) return { x: clientY - rect.top, y: rect.right - clientX };
+            return { x: clientX - rect.left, y: clientY - rect.top };
         };
 
-        const dS = (e) => { isDrawing = true; const p = getPos(e); ctx.beginPath(); ctx.moveTo(p.x, p.y); if(e.type==='touchstart') e.preventDefault(); };
-        const dM = (e) => { if(!isDrawing) return; const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); if(e.type==='touchmove') e.preventDefault(); };
+        const drawStart = (e) => { isDrawing = true; const pos = getPos(e); ctx.beginPath(); ctx.moveTo(pos.x, pos.y); if(e.type === 'touchstart') e.preventDefault(); };
+        const drawMove = (e) => { if(!isDrawing) return; const pos = getPos(e); ctx.lineTo(pos.x, pos.y); ctx.stroke(); if(e.type === 'touchmove') e.preventDefault(); };
 
-        canvas.addEventListener('mousedown', dS); canvas.addEventListener('mousemove', dM); window.addEventListener('mouseup', () => isDrawing = false);
-        canvas.addEventListener('touchstart', dS, {passive:false}); canvas.addEventListener('touchmove', dM, {passive:false}); canvas.addEventListener('touchend', () => isDrawing = false);
+        canvas.addEventListener('mousedown', drawStart); canvas.addEventListener('mousemove', drawMove); window.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('touchstart', drawStart, {passive: false}); canvas.addEventListener('touchmove', drawMove, {passive: false}); canvas.addEventListener('touchend', () => isDrawing = false);
+
         window.clearCanvas = () => ctx.clearRect(0, 0, canvas.width, canvas.height);
         window.finishSignature = () => {
             lastSigData = canvas.toDataURL(); overlay.style.display = 'none';
             document.getElementById('sig-preview-img').src = lastSigData;
             document.getElementById('signature-preview-box').classList.remove('hidden');
             document.getElementById('submitBtn').classList.remove('hidden');
+            window.scrollTo({ top: document.getElementById('signature-section').offsetTop + 350, behavior: 'smooth' });
         };
 
+        // 提交
         window.finalSubmit = async () => {
-            if (!isAuthReady) return showSystemModal('warning', '驗證中', '請稍候，系統正在連線至安全性伺服器...');
-            const btn = document.getElementById('submitBtn'); btn.disabled = true;
+            if(!isAuthReady) {
+                showSystemModal('warning', '連線中', '正在重試與伺服器的連線，請稍候...');
+                await startSync();
+                return;
+            }
+            const name = document.getElementById('userName').value.trim();
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i>正在同步數據...';
             try {
                 await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'signatures'), {
-                    name: document.getElementById('userName').value.trim(), signature: lastSigData, timestamp: serverTimestamp(), supervisorCheck: false
+                    name, signature: lastSigData, timestamp: serverTimestamp(), supervisorCheck: false
                 });
-                showSystemModal('success', '同步成功', '紀錄已成功存檔！', () => location.reload());
+                showSystemModal('success', '同步成功', '培訓紀錄已成功上傳！感謝您的配合。', () => location.reload());
             } catch (e) {
-                showSystemModal('warning', '錯誤', '上傳失敗：' + e.message); btn.disabled = false;
+                showSystemModal('warning', '上傳失敗', '同步時發生錯誤：' + e.message);
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-cloud-upload-alt mr-3"></i> 同步至雲端';
             }
         };
 
-        window.updateCheckStatus = async (id, s) => {
+        window.updateCheckStatus = async (id, status) => {
             if(!isAdmin) return;
-            try { await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'signatures', id), { supervisorCheck: s }); } catch (e) {}
+            try {
+                const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'signatures', id);
+                await updateDoc(docRef, { supervisorCheck: status });
+            } catch (e) { console.error("Update failed", e); }
         };
 
-        let ds = [];
+        let dataStore = [];
         const refreshList = () => {
-            const list = document.getElementById('signatureList'), now = Date.now(), hY = 182*24*60*60*1000;
-            if (!ds.length) { list.innerHTML = '<tr><td colspan="4" class="py-10 text-center text-gray-300">暫無紀錄</td></tr>'; return; }
-            list.innerHTML = ds.map(d => {
-                const t = d.timestamp ? d.timestamp.seconds*1000 : now, isE = (now-t)>hY;
-                return `<tr><td class="px-8 py-6 font-bold text-gray-700">${d.name}</td><td class="px-8 py-6 text-center"><img src="${d.signature}" class="h-8 inline mix-blend-multiply"></td><td class="px-8 py-6 text-[10px] ${isE?'expired-date':'text-gray-400'}"><i class="far fa-clock mr-1"></i>${d.timestamp?new Date(t).toLocaleString('zh-TW',{hour12:false}):'處理中'}</td><td class="px-8 py-6 text-center ${isAdmin?'':'hidden'}"><input type="checkbox" ${d.supervisorCheck?'checked':''} onchange="updateCheckStatus('${d.id}', this.checked)" class="w-5 h-5 accent-[#1a4d2e]"></td></tr>`;
+            const list = document.getElementById('signatureList');
+            const now = new Date().getTime();
+            const halfYearInMs = 182 * 24 * 60 * 60 * 1000;
+
+            if (dataStore.length === 0) {
+                list.innerHTML = '<tr><td colspan="4" class="px-8 py-20 text-center text-gray-300 italic text-sm">尚未有任何簽署紀錄同步...</td></tr>';
+                return;
+            }
+
+            list.innerHTML = dataStore.map(d => {
+                const ts = d.timestamp ? d.timestamp.seconds * 1000 : now;
+                const isExpired = (now - ts) > halfYearInMs;
+                const dateStr = d.timestamp ? new Date(ts).toLocaleString('zh-TW', { hour12: false }) : '處理中';
+                return `
+                    <tr class="hover:bg-gray-50/50 transition-all">
+                        <td class="px-8 py-6 font-bold text-gray-700 tracking-tight">${d.name}</td>
+                        <td class="px-8 py-6 text-center">
+                            <div class="bg-white p-1 rounded border inline-block shadow-sm overflow-hidden max-w-[120px]">
+                                <img src="${d.signature}" class="h-10 object-contain mix-blend-multiply opacity-90 scale-110">
+                            </div>
+                        </td>
+                        <td class="px-8 py-6 text-[11px] ${isExpired ? 'expired-date' : 'text-gray-400'} font-medium">
+                            <i class="far fa-clock mr-2"></i>${dateStr}
+                        </td>
+                        <td class="px-8 py-6 text-center ${isAdmin ? '' : 'hidden'}">
+                            <input type="checkbox" ${d.supervisorCheck ? 'checked' : ''} 
+                                   onchange="updateCheckStatus('${d.id}', this.checked)"
+                                   class="w-6 h-6 accent-[#1a4d2e] cursor-pointer shadow-sm rounded-lg">
+                        </td>
+                    </tr>
+                `;
             }).join('');
         };
 
         const startSync = async () => {
             try {
-                const u = await signInAnonymously(auth);
+                await signInAnonymously(auth);
                 isAuthReady = true;
-                onSnapshot(query(collection(db, 'artifacts', appId, 'public', 'data', 'signatures')), (s) => {
-                    ds = s.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                    ds.sort((a,b) => (b.timestamp?.seconds||0)-(a.timestamp?.seconds||0));
-                    document.getElementById('completeCount').innerText = ds.length; refreshList();
-                }, (err) => { if(err.message.includes("permission")) showSystemModal('warning', '權限錯誤', '請檢查資料庫規則。'); });
-            } catch (e) { showSystemModal('warning', '連線錯誤', '無法建立安全性連線，請檢查網路。'); }
+                onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'signatures'), (snap) => {
+                    dataStore = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    dataStore.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+                    document.getElementById('completeCount').innerText = dataStore.length;
+                    refreshList();
+                }, (err) => {
+                    console.error("Firestore Listen Error:", err);
+                    if(err.message.includes("permission")) showSystemModal('warning', '資料庫權限不足', '請檢查 Firebase Console 的 Rules 是否已發佈。');
+                });
+            } catch (e) { console.error("Auth Error:", e); }
         };
         startSync();
     </script>

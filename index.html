@@ -63,17 +63,17 @@
 <body class="text-gray-800 pb-20">
 
     <script>
-        // 圖片資源路徑配置
+        // 圖片資源路徑配置：根據使用者提供清單更正
         const imagePaths = {
             logo: "1000033771.jpg", 
-            safetySop: "1000033765.png",
-            harassment: "1000033773.png",
-            hocl: "1000033878.png",
-            hocl_safety: "1000033844.png",
-            alcohol: "1000033881.png",
-            alcohol_safety: "1000033879.png",
+            safetySop: "安全作業標準.jpg",
+            harassment: "性騷防治.jpg",
+            hocl: "次氯酸水.jpg",
+            hocl_safety: "次氯酸水.jpg", // 若無獨立安全圖則延用主圖
+            alcohol: "酒精.jpg",
+            alcohol_safety: "酒精.jpg", // 若無獨立安全圖則延用主圖
             fireExt: "滅火器.png",
-            fireAlarm: "受信總機.jpg"
+            fireAlarm: "受信總機.png"
         };
 
         const firebaseConfig = {
@@ -257,7 +257,7 @@
                         <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-200 shadow-sm font-medium leading-relaxed">
                             <ul class="text-[13px] space-y-4">
                                 <li class="flex items-start"><i class="fas fa-lightbulb mt-1 mr-3 text-amber-500"></i><div><p class="font-bold text-slate-800">指示燈狀態：</p><p class="text-slate-600 opacity-80">詳細顯示各分區狀態。紅燈亮起代表偵測到火警信號。</p></div></li>
-                                <li class="flex items-start"><i class="fas fa-bullhorn mt-1 mr-3 text-red-600"></i><div><p class="font-bold text-slate-800">警報顯示：</p><p class="text-slate-600 opacity-80">「火災」紅色燈號閃爍，並發出強大鳴響提示全店。</p></div></li>
+                                <li class="flex items-start"><i class="fas fa-bullhorn mt-1 mr-3 text-red-600"></i><div><p class="font-bold text-slate-800">警報顯示：</p><p class="text-slate-600 opacity-80">「火災」紅色燈號閃爍，並發出鳴響提示全店。</p></div></li>
                                 <li class="flex items-start"><i class="fas fa-hand-pointer mt-1 mr-3 text-blue-600"></i><div><p class="font-bold text-slate-800">操作與測試：</p><p class="text-slate-600 opacity-80">提供主音響、地區音響停止及復歸按鈕，限確認後操作。</p></div></li>
                             </ul>
                         </div>
@@ -291,7 +291,7 @@
             </div>
         </section>
 
-        <!-- 簽名區域 -->
+        <!-- 簽名確認區 -->
         <section id="signature-section" class="mt-20 bg-white rounded-[4rem] p-10 md:p-20 border-4 border-[#1a4d2e] shadow-2xl relative overflow-hidden">
             <div class="max-w-3xl mx-auto text-center relative z-10">
                 <i class="fas fa-file-signature text-7xl brand-text mb-8"></i>
@@ -308,7 +308,7 @@
             </div>
         </section>
 
-        <!-- 紀錄清單 -->
+        <!-- 歷史紀錄 -->
         <section class="mt-28 mb-10 px-2 text-center">
             <div class="flex flex-col md:flex-row items-center justify-between mb-8 px-4 gap-4">
                 <h3 class="text-2xl font-bold flex items-center brand-text uppercase"><i class="fas fa-clipboard-list mr-3"></i> 培訓簽署名單匯整</h3>
@@ -354,7 +354,7 @@
                     <div class="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-lg"><i class="fas fa-mobile-alt text-xl"></i></div>
                     <div>
                         <h4 class="font-bold text-blue-900 mb-2 uppercase font-bold tracking-widest text-sm">操作建議備註</h4>
-                        <p class="text-xs text-blue-800/80 leading-relaxed font-medium">建議同仁使用 <span class="font-bold border-b-2 border-blue-300 text-blue-900 uppercase tracking-widest">Google Chrome</span> 或 <span class="font-bold border-b-2 border-blue-300 text-blue-900 uppercase tracking-widest">Safari</span> 以便縮放頁面與教材。</p>
+                        <p class="text-xs text-blue-800/80 leading-relaxed font-medium">建議同仁使用 <span class="font-bold border-b-2 border-blue-300 text-blue-900 uppercase font-bold tracking-widest">Google Chrome</span> 或 <span class="font-bold border-b-2 border-blue-300 text-blue-900 uppercase font-bold tracking-widest">Safari</span> 以便縮放頁面與教材。</p>
                     </div>
                 </div>
             </div>
@@ -374,7 +374,7 @@
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { initializeFirestore, collection, addDoc, onSnapshot, query, serverTimestamp, updateDoc, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // 動態掛載與自動修復圖片邏輯
+        // 設定圖片與備用路徑邏輯
         const setImages = () => {
             const mappings = {
                 'img-logo': imagePaths.logo,
@@ -391,10 +391,11 @@
                 const el = document.getElementById(id);
                 if(el) {
                     el.src = path;
-                    // 自動嘗試修復圖片（處理 ID 異動）
                     el.onerror = () => {
-                        const fallbackPath = path.includes('.png') ? path.replace('.png', '.jpg') : path.replace('.jpg', '.png');
-                        el.src = fallbackPath;
+                        // 自動嘗試切換副檔名 (jpg <-> png)
+                        const altPath = path.includes('.png') ? path.replace('.png', '.jpg') : path.replace('.jpg', '.png');
+                        el.src = altPath;
+                        el.onerror = null; // 防止無限迴圈
                     };
                 }
             });
@@ -409,7 +410,6 @@
         const canvas = document.getElementById('sig-canvas'), ctx = canvas.getContext('2d'), overlay = document.getElementById('sig-overlay');
         let isDrawing = false, lastSigData = null, isAdmin = false, isAuthReady = false;
 
-        // Modal 控制系統
         const mO = document.getElementById('admin-modal-overlay'), pI = document.getElementById('admin-password'), pW = document.getElementById('password-wrapper'), eM = document.getElementById('modal-error'), mT = document.getElementById('modal-title'), mD = document.getElementById('modal-desc'), mI = document.getElementById('modal-icon'), mIB = document.getElementById('modal-icon-bg'), mCB = document.getElementById('modal-confirm-btn');
 
         window.showSystemModal = (type, title, desc, callback) => {
@@ -456,7 +456,7 @@
             try {
                 await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'signatures'), { name, signature: lastSigData, timestamp: serverTimestamp(), supervisorCheck: false });
                 showSystemModal('success', '成功', '紀錄已成功上傳！感謝您的配合。', () => location.reload());
-            } catch (e) { showSystemModal('warning', '失敗', '上傳錯誤：' + e.message); btn.disabled = false; btn.innerHTML = '<i class="fas fa-cloud-upload-alt mr-3"></i> 同步至雲端'; }
+            } catch (e) { showSystemModal('warning', '失敗', '上傳錯誤：' + e.message); btn.disabled = false; btn.innerHTML = '同步至雲端'; }
         };
 
         window.updateCheckStatus = async (id, status) => { if(!isAdmin) return; try { await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'signatures', id), { supervisorCheck: status }); } catch (e) {} };

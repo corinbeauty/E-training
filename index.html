@@ -74,7 +74,8 @@
             harassment: "性騷防治.jpg",
             hocl: "次氯酸水.jpg",
             alcohol: "酒精.jpg",
-            fireExt: "滅火器.png"
+            fireExt: "滅火器.png",
+            fireAlarm: "受信總機.png"
         };
 
         const firebaseConfig = {
@@ -114,7 +115,7 @@
             <h2 class="text-3xl font-extrabold brand-text mb-6 tracking-tighter">2026 年度勞工安全與職場環境培訓</h2>
             <div class="w-24 h-1.5 brand-bg mx-auto mb-8 rounded-full opacity-20"></div>
             <p class="text-gray-600 leading-relaxed text-sm md:text-base font-medium text-justify md:text-center">
-                不老松致力於提供最高規格的養身環境。本手冊內容涵蓋煮茶作業標準、性騷擾防治、化學品使用規範及初期滅火應變。<strong>※ 簽署紀錄超過半年將自動標示為紅色，屆時請重新完成培訓。</strong>
+                不老松致力於提供最高規格的養身環境。本手冊內容涵蓋煮茶作業標準、性騷擾防治、化學品使用規範及消防設備操作。<strong>※ 簽署紀錄超過半年將自動標示為紅色，屆時請重新完成培訓。</strong>
             </p>
         </div>
 
@@ -157,7 +158,6 @@
                     <img id="img-safetySop" src="" alt="煮茶 SOP" class="w-full rounded-3xl shadow-xl border border-stone-100">
                 </div>
 
-                <!-- 優化後的流程圖 -->
                 <div class="mt-8 pt-12 border-t border-gray-100 text-center">
                     <h4 class="font-bold text-gray-700 mb-10 text-base md:text-xl tracking-widest">標準作業流程序圖</h4>
                     <div class="grid grid-cols-1 md:grid-cols-9 gap-4 items-center max-w-4xl mx-auto px-2">
@@ -250,7 +250,6 @@
                                     <li><strong>眼部急救：</strong> 不慎噴濺眼睛應立即以大量清水沖洗 15 分鐘並就醫。</li>
                                 </ul>
                             </div>
-                            <!-- 圖片放置於說明文字下方 -->
                             <img id="img-alcohol" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover mt-6 shadow-2xl transition-transform hover:scale-[1.02]">
                         </div>
                     </div>
@@ -258,7 +257,90 @@
             </div>
         </section>
 
-        <!-- 4. 滅火器 PASS -->
+        <!-- 4. 火警受信總機操作教學 (新追加) -->
+        <section class="section-card">
+            <div class="bg-slate-700 text-white px-8 py-6 flex items-center justify-between">
+                <div class="flex items-center">
+                    <i class="fas fa-broadcast-tower mr-4 text-3xl"></i>
+                    <div>
+                        <h2 class="text-xl font-bold">火警(複合式)受信總機操作教學</h2>
+                        <p class="text-[10px] opacity-80 mt-1">消防核心中樞：監控、判讀與緊急復歸</p>
+                    </div>
+                </div>
+                <div class="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold">1F 櫃台右側</div>
+            </div>
+            <div class="p-8 md:p-12">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-10">
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="font-bold text-slate-700 text-lg mb-4 flex items-center">
+                                <span class="w-2 h-6 bg-slate-700 mr-3 rounded-full"></span> 功能定義與判讀要點
+                            </h3>
+                            <p class="text-sm text-gray-600 leading-relaxed text-justify font-medium">
+                                受信總機為建築物消防安全的神經中樞。當感應器偵測到異常煙霧或高溫時，總機會立即發出警報並顯示受災樓層。同仁必須熟悉指示燈號，以利在第一時間做出正確判斷。
+                            </p>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-200 shadow-sm">
+                                <ul class="text-[13px] space-y-4">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-lightbulb mt-1 mr-3 text-amber-500"></i>
+                                        <div>
+                                            <p class="font-bold text-slate-800">指示燈狀態：</p>
+                                            <p class="text-slate-600 opacity-80">清楚顯示各樓層(L1-L10)火警狀態，紅燈亮起即代表該區域警報觸發。</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-bullhorn mt-1 mr-3 text-red-600"></i>
+                                        <div>
+                                            <p class="font-bold text-slate-800">警報顯示：</p>
+                                            <p class="text-slate-600 opacity-80">大型「火災」紅色指示燈閃爍，提供立即性的視覺與聽覺警告。</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-hand-pointer mt-1 mr-3 text-blue-600"></i>
+                                        <div>
+                                            <p class="font-bold text-slate-800">操作與測試：</p>
+                                            <p class="text-slate-600 opacity-80">底部控制區提供主音響、移報、地區音響之停止與復歸功能，僅限維護與確認誤報時使用。</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img id="img-fireAlarm" src="" alt="受信總機操作" class="w-full rounded-3xl shadow-xl border border-stone-100">
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-12 border-t border-gray-100 text-center">
+                    <h4 class="font-bold text-gray-700 mb-10 text-base md:text-xl tracking-widest">警報觸發應變流程</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-9 gap-4 items-center max-w-4xl mx-auto px-2">
+                        <div class="flow-step md:col-span-1 border-gray-200">
+                            <span>Step 1</span>燈號確認
+                        </div>
+                        <div class="flow-arrow md:col-span-1"><i class="fas fa-chevron-right"></i></div>
+                        <div class="flow-step md:col-span-1 border-gray-200">
+                            <span>Step 2</span>現場查看
+                        </div>
+                        <div class="flow-arrow md:col-span-1"><i class="fas fa-chevron-right"></i></div>
+                        <div class="flow-step md:col-span-1 border-red-600 bg-red-50 text-red-800 shadow-inner">
+                            <span>Step 3</span>通報主管
+                        </div>
+                        <div class="flow-arrow md:col-span-1"><i class="fas fa-chevron-right"></i></div>
+                        <div class="flow-step md:col-span-1 border-gray-200">
+                            <span>Step 4</span>緊急處置
+                        </div>
+                        <div class="flow-arrow md:col-span-1"><i class="fas fa-chevron-right"></i></div>
+                        <div class="flow-step md:col-span-1 border-gray-200">
+                            <span>Step 5</span>系統復歸
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 滅火器 PASS -->
         <section class="section-card">
             <div class="bg-orange-600 text-white px-8 py-6 flex items-center">
                 <i class="fas fa-fire-extinguisher mr-4 text-3xl"></i>
@@ -450,6 +532,7 @@
             document.getElementById('img-hocl').src = imagePaths.hocl;
             document.getElementById('img-alcohol').src = imagePaths.alcohol;
             document.getElementById('img-fireExt').src = imagePaths.fireExt;
+            document.getElementById('img-fireAlarm').src = imagePaths.fireAlarm;
         };
         setImages();
 

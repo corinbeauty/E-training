@@ -70,14 +70,15 @@
         // 教材資源配置
         const imagePaths = {
             logo: "logo.png", 
-            safetySop: "安全作業標準.jpg",
-            harassment: "性騷防治.jpg",
+            safetySop: "1000033765.png",
+            harassment: "1000033773.png",
             hocl: "次氯酸水.jpg",
             alcohol: "酒精.jpg",
             fireExt: "滅火器.png",
-            fireAlarm: "受信總機.png"
+            fireAlarm: "受信總機.jpg"
         };
 
+        // 您提供的正式 Firebase 配置
         const firebaseConfig = {
             apiKey: "AIzaSyBfS9CJMmhQfFkNB3mwco5apc9rDpp3ipw",
             authDomain: "e-training-a6d4c.firebaseapp.com",
@@ -250,6 +251,7 @@
                                     <li><strong>眼部急救：</strong> 不慎噴濺眼睛應立即以大量清水沖洗 15 分鐘並就醫。</li>
                                 </ul>
                             </div>
+                            <!-- 圖片放置於說明文字下方 -->
                             <img id="img-alcohol" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover mt-6 shadow-2xl transition-transform hover:scale-[1.02]">
                         </div>
                     </div>
@@ -257,27 +259,27 @@
             </div>
         </section>
 
-        <!-- 4. 火警受信總機操作教學 (新追加) -->
+        <!-- 4. 火警受信總機操作教學 -->
         <section class="section-card">
             <div class="bg-slate-700 text-white px-8 py-6 flex items-center justify-between">
                 <div class="flex items-center">
                     <i class="fas fa-broadcast-tower mr-4 text-3xl"></i>
                     <div>
                         <h2 class="text-xl font-bold">火警(複合式)受信總機操作教學</h2>
-                        <p class="text-[10px] opacity-80 mt-1">消防核心中樞：監控、判讀與緊急復歸</p>
+                        <p class="text-[10px] opacity-80 mt-1">消防核心中樞：監控、判讀與緊急應變</p>
                     </div>
                 </div>
-                <div class="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold">1F 櫃台右側</div>
+                <div class="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest">1F 櫃台右側</div>
             </div>
             <div class="p-8 md:p-12">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-10">
                     <div class="space-y-8">
                         <div>
                             <h3 class="font-bold text-slate-700 text-lg mb-4 flex items-center">
-                                <span class="w-2 h-6 bg-slate-700 mr-3 rounded-full"></span> 功能定義與判讀要點
+                                <span class="w-2 h-6 bg-slate-700 mr-3 rounded-full"></span> 設備判讀與功能定義
                             </h3>
                             <p class="text-sm text-gray-600 leading-relaxed text-justify font-medium">
-                                受信總機為建築物消防安全的神經中樞。當感應器偵測到異常煙霧或高溫時，總機會立即發出警報並顯示受災樓層。同仁必須熟悉指示燈號，以利在第一時間做出正確判斷。
+                                受信總機為建築物消防安全的神經中樞。當感應器偵測到異常煙霧或高溫時，總機會立即發出警報並顯示受災樓層。同仁必須熟悉指示燈號，以利在第一時間做出正確判讀與通報。
                             </p>
                         </div>
                         <div class="space-y-6">
@@ -301,7 +303,7 @@
                                         <i class="fas fa-hand-pointer mt-1 mr-3 text-blue-600"></i>
                                         <div>
                                             <p class="font-bold text-slate-800">操作與測試：</p>
-                                            <p class="text-slate-600 opacity-80">底部控制區提供主音響、移報、地區音響之停止與復歸功能，僅限維護與確認誤報時使用。</p>
+                                            <p class="text-slate-600 opacity-80">底部控制區提供主音響、移報、地區音響之停止與復歸按鈕，僅限維護與確認誤報時使用。</p>
                                         </div>
                                     </li>
                                 </ul>
@@ -314,7 +316,7 @@
                 </div>
 
                 <div class="mt-8 pt-12 border-t border-gray-100 text-center">
-                    <h4 class="font-bold text-gray-700 mb-10 text-base md:text-xl tracking-widest">警報觸發應變流程</h4>
+                    <h4 class="font-bold text-gray-700 mb-10 text-base md:text-xl tracking-widest text-[14px]">警報觸發應變流程</h4>
                     <div class="grid grid-cols-1 md:grid-cols-9 gap-4 items-center max-w-4xl mx-auto px-2">
                         <div class="flow-step md:col-span-1 border-gray-200">
                             <span>Step 1</span>燈號確認
@@ -536,10 +538,12 @@
         };
         setImages();
 
+        // 使用您提供的正式配置
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
-        const appId = "bulasong-training-v2026-final";
+        // 路徑必須符合 Rule 1
+        const appId = typeof __app_id !== 'undefined' ? __app_id : "bulasong-osh-v2026-final";
 
         const canvas = document.getElementById('sig-canvas');
         const ctx = canvas.getContext('2d');
@@ -548,7 +552,7 @@
         let lastSigData = null;
         let isAdmin = false;
 
-        // Modal 系統元件
+        // Modal 系統
         const modalOverlay = document.getElementById('admin-modal-overlay');
         const passwordInput = document.getElementById('admin-password');
         const passwordWrapper = document.getElementById('password-wrapper');
@@ -698,12 +702,19 @@
             window.scrollTo({ top: document.getElementById('signature-section').offsetTop + 350, behavior: 'smooth' });
         };
 
+        // 最終上傳
         window.finalSubmit = async () => {
+            // Rule 3: 確保使用者已登入
+            if (!auth.currentUser) {
+                await signInAnonymously(auth);
+            }
+
             const name = document.getElementById('userName').value.trim();
             const btn = document.getElementById('submitBtn');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin mr-3"></i>正在同步數據...';
             try {
+                // Rule 1: 嚴格路徑
                 await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'signatures'), {
                     name, signature: lastSigData, timestamp: serverTimestamp(), supervisorCheck: false
                 });
@@ -711,19 +722,19 @@
                     location.reload();
                 });
             } catch (e) {
-                showSystemModal('warning', '連線失敗', '同步時發生錯誤，請檢查網路連線：' + e.message);
+                showSystemModal('warning', '權限錯誤', '同步時發生錯誤（請確保資料庫規則已開放）：' + e.message);
                 btn.disabled = false;
                 btn.innerHTML = '<i class="fas fa-cloud-upload-alt mr-3"></i> 確認並同步雲端紀錄';
             }
         };
 
         window.updateCheckStatus = async (id, status) => {
-            if(!isAdmin) return;
+            if(!isAdmin || !auth.currentUser) return;
             try {
                 const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'signatures', id);
                 await updateDoc(docRef, { supervisorCheck: status });
             } catch (e) {
-                console.error("Update failed", e);
+                console.error("Firebase update failed", e);
             }
         };
 
@@ -746,9 +757,9 @@
                 return `
                     <tr class="hover:bg-gray-50/50 transition-all">
                         <td class="px-8 py-6 font-bold text-gray-700 tracking-tight">${d.name}</td>
-                        <td class="px-8 py-6">
-                            <div class="bg-white p-1 rounded border inline-block shadow-sm">
-                                <img src="${d.signature}" class="h-8 object-contain mix-blend-multiply opacity-90 scale-110">
+                        <td class="px-8 py-6 text-center">
+                            <div class="bg-white p-1 rounded border inline-block shadow-sm overflow-hidden max-w-[120px]">
+                                <img src="${d.signature}" class="h-10 object-contain mix-blend-multiply opacity-90 scale-110">
                             </div>
                         </td>
                         <td class="px-8 py-6 text-[11px] ${isExpired ? 'expired-date' : 'text-gray-400'} font-medium">
@@ -757,7 +768,7 @@
                         <td class="px-8 py-6 text-center ${isAdmin ? '' : 'hidden'}">
                             <input type="checkbox" ${d.supervisorCheck ? 'checked' : ''} 
                                    onchange="updateCheckStatus('${d.id}', this.checked)"
-                                   class="w-5 h-5 accent-[#1a4d2e] cursor-pointer shadow-sm rounded-lg">
+                                   class="w-6 h-6 accent-[#1a4d2e] cursor-pointer shadow-sm rounded-lg">
                         </td>
                     </tr>
                 `;
@@ -765,14 +776,27 @@
         };
 
         const startSync = async () => {
-            await signInAnonymously(auth);
-            const q = collection(db, 'artifacts', appId, 'public', 'data', 'signatures');
-            onSnapshot(q, (snap) => {
-                dataStore = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-                dataStore.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
-                document.getElementById('completeCount').innerText = dataStore.length;
-                refreshList();
-            });
+            try {
+                // Rule 3: 先驗證身份
+                await signInAnonymously(auth);
+                // Rule 1: 嚴格路徑
+                const q = collection(db, 'artifacts', appId, 'public', 'data', 'signatures');
+                // Rule 2: 簡單查詢
+                onSnapshot(q, (snap) => {
+                    dataStore = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+                    // 記憶體排序
+                    dataStore.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0));
+                    document.getElementById('completeCount').innerText = dataStore.length;
+                    refreshList();
+                }, (err) => {
+                    console.error("Firestore Listen Error:", err);
+                    if(err.message.includes("permission")) {
+                         showSystemModal('warning', '資料庫權限不足', '請至 Firebase Console 開啟讀寫權限。');
+                    }
+                });
+            } catch (err) {
+                console.error("Auth Error:", err);
+            }
         };
         startSync();
     </script>

@@ -63,15 +63,13 @@
 <body class="text-gray-800 pb-20">
 
     <script>
-        // 圖片資源路徑配置：根據使用者提供清單更正
+        // 圖片資源路徑配置：校對副檔名與名稱
         const imagePaths = {
-            logo: "1000033771.jpg", 
+            logo: "logo.png", 
             safetySop: "安全作業標準.jpg",
             harassment: "性騷防治.jpg",
             hocl: "次氯酸水.jpg",
-            hocl_safety: "次氯酸水.jpg", // 若無獨立安全圖則延用主圖
             alcohol: "酒精.jpg",
-            alcohol_safety: "酒精.jpg", // 若無獨立安全圖則延用主圖
             fireExt: "滅火器.png",
             fireAlarm: "受信總機.png"
         };
@@ -95,18 +93,18 @@
                     <img id="img-logo" src="" alt="Logo" class="w-10 h-10 object-contain" onerror="this.src='https://via.placeholder.com/100?text=LOGO'">
                 </div>
                 <div>
-                    <h1 class="text-lg font-bold tracking-tight">不老松中清店</h1>
+                    <h1 class="text-lg font-bold tracking-tight text-white">不老松中清店</h1>
                     <p class="text-[9px] opacity-60 tracking-widest font-light uppercase">Occupational Safety System</p>
                 </div>
             </div>
             
             <div class="flex items-center space-x-2 md:space-x-3">
                 <div class="bg-white/10 backdrop-blur-md px-3 py-2 rounded-2xl border border-white/20 text-center min-w-[75px] md:min-w-[85px]">
-                    <div id="completeCount" class="text-lg md:text-xl font-bold leading-none text-white">0</div>
+                    <div id="completeCount" class="text-lg md:text-xl font-bold leading-none text-white text-center">0</div>
                     <div class="text-[7px] opacity-80 uppercase mt-1 font-bold">總簽署人數</div>
                 </div>
                 <div class="bg-white/10 backdrop-blur-md px-3 py-2 rounded-2xl border border-white/20 text-center min-w-[75px] md:min-w-[85px]">
-                    <div id="checkedCount" class="text-lg md:text-xl font-bold leading-none text-amber-400">0</div>
+                    <div id="checkedCount" class="text-lg md:text-xl font-bold leading-none text-amber-400 text-center">0</div>
                     <div class="text-[7px] opacity-80 uppercase mt-1 font-bold">主管核對數</div>
                 </div>
             </div>
@@ -119,7 +117,7 @@
             <h2 class="text-3xl font-extrabold brand-text mb-6 tracking-tighter uppercase">2026 年度勞工安全與職場環境培訓</h2>
             <div class="w-24 h-1.5 brand-bg mx-auto mb-8 rounded-full opacity-20"></div>
             <p class="text-gray-600 leading-relaxed text-sm md:text-base font-medium text-justify md:text-center italic px-4">
-                不老松致力於提供最高規格的養身環境。本培訓包含煮茶 SOP、性騷擾防治、化學品管理及消防設備操作。
+                不老松致力於提供最高規格的養身環境。本培訓包含煮茶 SOP、性騷擾防治、化學品管理及消防設備操作。<strong>※ 簽署紀錄超過半年將自動標示為紅色。</strong>
             </p>
         </div>
 
@@ -175,7 +173,7 @@
             </div>
             <div class="p-8 md:p-12">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                    <div class="flex items-center justify-center">
+                    <div class="flex items-center justify-center text-center">
                         <img id="img-harassment" src="" alt="性騷防治" class="w-full rounded-3xl shadow-xl border border-stone-100 object-contain max-h-[500px]">
                     </div>
                     <div class="space-y-6">
@@ -186,7 +184,7 @@
                             <div class="space-y-6 text-sm text-green-900 leading-relaxed font-medium">
                                 <p>● <strong>肢體尊重：</strong> 服務期間僅進行必要之專業接觸，嚴禁非服務所需之碰觸或靠攏。</p>
                                 <p>● <strong>專業口吻：</strong> 禁止討論同事或客人之體態特徵，嚴禁使用具性暗示之言語或玩笑。</p>
-                                <p>● <strong>數位禮儀：</strong> 嚴禁未經同意傳送不雅貼圖訊息，或擅自側拍、側錄。</p>
+                                <p>● <strong>數位禮儀：</strong> 嚴禁未經同意傳送不雅貼圖訊息，或擅自對同事或客人進行側拍、側錄。</p>
                             </div>
                         </div>
                         <div class="p-6 bg-stone-50 rounded-3xl border border-stone-200">
@@ -205,21 +203,20 @@
             </div>
             <div class="p-8 md:p-12 space-y-16">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
-                    <div class="space-y-6">
-                        <h3 class="text-xl font-bold brand-text flex items-center border-b pb-2">
+                    <div class="space-y-6 text-center lg:text-left">
+                        <h3 class="text-xl font-bold brand-text flex items-center justify-center lg:justify-start border-b pb-2">
                             <span class="bg-blue-600 text-white px-3 py-1 rounded-lg text-xs mr-3 shadow-sm">HOCl</span> 次氯酸水安全細則
                         </h3>
                         <p class="text-sm text-gray-600 leading-relaxed font-medium">
-                            強效除菌劑，<strong>嚴禁混用</strong>酸性清潔劑，避免產生劇毒氯氣。應避光存放於陰涼處以維持藥效。
+                            強效除菌劑，<strong>嚴禁混用</strong>酸性清潔劑，避免產生劇毒氯氣。應避光存放於陰涼處。
                         </p>
-                        <img id="img-hocl" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover mb-4">
-                        <img id="img-hocl-safety" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover">
+                        <img id="img-hocl" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover">
                     </div>
-                    <div class="space-y-6">
-                        <h3 class="text-xl font-bold brand-text flex items-center border-b pb-2">
+                    <div class="space-y-6 text-center lg:text-left">
+                        <h3 class="text-xl font-bold brand-text flex items-center justify-center lg:justify-start border-b pb-2">
                             <span class="bg-red-600 text-white px-3 py-1 rounded-lg text-xs mr-3 shadow-sm">75% Alc</span> 酒精危害預防
                         </h3>
-                        <div class="space-y-4">
+                        <div class="space-y-4 text-left">
                             <p class="text-sm text-gray-700 font-bold border-l-4 border-red-600 pl-4 leading-relaxed italic text-red-600">
                                 酒精閃火點極低（約 13°C）。室內大量噴灑時必須保持良好通風。
                             </p>
@@ -227,12 +224,11 @@
                                 <div class="font-bold mb-4 border-b border-red-200 pb-2 flex items-center uppercase"><i class="fas fa-shield-alt mr-2 text-red-600"></i> 核心防護與急救措施</div>
                                 <ul class="list-disc pl-5 space-y-2">
                                     <li><strong>絕對禁止火源：</strong> 瓦斯爐旁、吸菸區周邊嚴禁噴灑。</li>
-                                    <li><strong>防範靜電：</strong> 避免在密閉環境下大量噴灑。</li>
+                                    <li><strong>防範靜電：</strong> 避免在密閉、多合成纖維環境下大量噴灑。</li>
                                     <li><strong>眼部急救：</strong> 不慎噴濺應立即沖洗 15 分鐘並就醫。</li>
                                 </ul>
                             </div>
                             <img id="img-alcohol" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover mt-6 shadow-2xl">
-                            <img id="img-alcohol-safety" src="" class="rounded-3xl border shadow-lg w-full h-auto object-cover mt-4 shadow-2xl">
                         </div>
                     </div>
                 </div>
@@ -251,13 +247,13 @@
                 </div>
                 <div class="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold tracking-widest">1F 櫃台右側</div>
             </div>
-            <div class="p-8 md:p-12">
+            <div class="p-8 md:p-12 text-center lg:text-left">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start mb-10">
                     <div class="space-y-6">
-                        <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-200 shadow-sm font-medium leading-relaxed">
+                        <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-200 shadow-sm font-medium leading-relaxed text-left">
                             <ul class="text-[13px] space-y-4">
                                 <li class="flex items-start"><i class="fas fa-lightbulb mt-1 mr-3 text-amber-500"></i><div><p class="font-bold text-slate-800">指示燈狀態：</p><p class="text-slate-600 opacity-80">詳細顯示各分區狀態。紅燈亮起代表偵測到火警信號。</p></div></li>
-                                <li class="flex items-start"><i class="fas fa-bullhorn mt-1 mr-3 text-red-600"></i><div><p class="font-bold text-slate-800">警報顯示：</p><p class="text-slate-600 opacity-80">「火災」紅色燈號閃爍，並發出鳴響提示全店。</p></div></li>
+                                <li class="flex items-start"><i class="fas fa-bullhorn mt-1 mr-3 text-red-600"></i><div><p class="font-bold text-slate-800">警報顯示：</p><p class="text-slate-600 opacity-80">「火災」紅色燈號閃爍，並發出強大鳴響提示全店。</p></div></li>
                                 <li class="flex items-start"><i class="fas fa-hand-pointer mt-1 mr-3 text-blue-600"></i><div><p class="font-bold text-slate-800">操作與測試：</p><p class="text-slate-600 opacity-80">提供主音響、地區音響停止及復歸按鈕，限確認後操作。</p></div></li>
                             </ul>
                         </div>
@@ -278,12 +274,12 @@
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
                     <div class="bg-gray-900 text-white p-10 rounded-[2.5rem] shadow-2xl relative overflow-hidden">
                         <div class="absolute -right-4 -bottom-4 text-white/5 text-9xl"><i class="fas fa-fire"></i></div>
-                        <h4 class="text-lg font-bold mb-8 border-b border-white/20 pb-4 flex items-center uppercase tracking-widest"><i class="fas fa-running mr-3 text-orange-400"></i> PASS 滅火四步驟</h4>
+                        <h4 class="text-lg font-bold mb-8 border-b border-white/20 pb-4 flex items-center justify-center md:justify-start tracking-widest"><i class="fas fa-running mr-3 text-orange-400"></i> PASS 滅火四步驟</h4>
                         <div class="space-y-8 text-sm relative z-10 font-bold">
-                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">P</div><div><p class="font-bold text-orange-200 text-base tracking-widest uppercase">Pull (拉開插梢)</p></div></div>
-                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">A</div><div><p class="font-bold text-orange-200 text-base tracking-widest uppercase">Aim (瞄準火源)</p></div></div>
-                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">S</div><div><p class="font-bold text-orange-200 text-base tracking-widest uppercase">Squeeze (壓下手把)</p></div></div>
-                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0">S</div><div><p class="font-bold text-orange-200 text-base tracking-widest uppercase">Sweep (掃射火源)</p></div></div>
+                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0 text-center">P</div><div><p class="font-bold text-orange-200 text-base tracking-widest uppercase">Pull (拉開插梢)</p></div></div>
+                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0 text-center">A</div><div><p class="font-bold text-orange-200 text-base tracking-widest uppercase">Aim (瞄準火源)</p></div></div>
+                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0 text-center">S</div><div><p class="font-bold text-orange-200 text-base tracking-widest uppercase">Squeeze (壓下手把)</p></div></div>
+                            <div class="flex items-center space-x-5"><div class="w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center font-black shadow-lg text-lg shrink-0 text-center">S</div><div><p class="font-bold text-orange-200 text-base tracking-widest uppercase">Sweep (掃射火源)</p></div></div>
                         </div>
                     </div>
                     <img id="img-fireExt" src="" alt="滅火器操作" class="w-full rounded-[2.5rem] shadow-xl border border-stone-100">
@@ -291,11 +287,17 @@
             </div>
         </section>
 
-        <!-- 簽名確認區 -->
+        <!-- 簽名確認區 (修正重點：恢復小字) -->
         <section id="signature-section" class="mt-20 bg-white rounded-[4rem] p-10 md:p-20 border-4 border-[#1a4d2e] shadow-2xl relative overflow-hidden">
             <div class="max-w-3xl mx-auto text-center relative z-10">
                 <i class="fas fa-file-signature text-7xl brand-text mb-8"></i>
                 <h2 class="text-3xl font-extrabold brand-text mb-6 tracking-tighter uppercase">參與培訓聲明與確認</h2>
+                
+                <!-- 恢復的小字說明 -->
+                <p class="text-gray-500 mb-12 text-sm leading-relaxed font-medium px-4">
+                    本人確認已詳閱並充分理解以上教育訓練內容，並承諾落實於職務作業中，確保自身與同仁之安全。
+                </p>
+
                 <div class="space-y-10 text-left max-w-xl mx-auto">
                     <div>
                         <label class="block text-sm font-bold text-gray-700 mb-3 ml-2 flex items-center uppercase"><i class="fas fa-user-check mr-2 text-[#1a4d2e]"></i> 簽署人員姓名 (正楷全名)</label>
@@ -338,10 +340,10 @@
     <div id="admin-modal-overlay" class="modal-overlay">
         <div class="modal-content text-center">
             <div id="modal-icon-bg" class="w-16 h-16 brand-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"><i id="modal-icon" class="fas fa-user-shield text-2xl"></i></div>
-            <h3 id="modal-title" class="text-xl font-bold brand-text mb-2 tracking-tight uppercase">權限驗證</h3>
-            <p id="modal-desc" class="text-[10px] text-gray-400 mb-6 font-medium uppercase font-bold tracking-widest">請輸入密碼以開啟功能</p>
+            <h3 id="modal-title" class="text-xl font-bold brand-text mb-2 tracking-tight uppercase text-center">權限驗證</h3>
+            <p id="modal-desc" class="text-[10px] text-gray-400 mb-6 font-medium uppercase font-bold tracking-widest text-center">請輸入密碼以開啟功能</p>
             <div id="password-wrapper"><input type="password" id="admin-password" class="w-full text-center px-4 py-4 rounded-2xl border-2 border-gray-100 focus:border-[#1a4d2e] outline-none text-2xl tracking-[0.5em] font-bold mb-6 bg-gray-50/50"></div>
-            <p id="modal-error" class="text-red-500 text-[10px] mb-4 hidden">驗證失敗</p>
+            <p id="modal-error" class="text-red-500 text-[10px] mb-4 hidden text-center">驗證失敗</p>
             <div class="flex space-x-3"><button onclick="closeAdminModal()" class="flex-1 py-3.5 bg-gray-100 text-gray-500 rounded-2xl font-bold text-sm uppercase font-bold tracking-widest">取消</button><button id="modal-confirm-btn" class="flex-1 py-3.5 brand-bg text-white rounded-2xl font-bold text-sm shadow-lg active:scale-95 uppercase font-bold tracking-widest">驗證並開啟</button></div>
         </div>
     </div>
@@ -349,12 +351,12 @@
     <!-- 頁尾 -->
     <footer class="mt-20 border-t border-gray-200 bg-gray-50">
         <div class="max-w-4xl mx-auto px-4 py-16 text-center">
-            <div class="bg-blue-50/50 border border-blue-100 rounded-3xl p-6 md:p-10 mb-10 shadow-inner text-left md:text-center">
-                <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-5 gap-4">
+            <div class="bg-blue-50/50 border border-blue-100 rounded-3xl p-6 md:p-10 mb-10 shadow-inner text-left md:text-center text-center">
+                <div class="flex flex-col md:flex-row items-center space-x-0 md:space-x-5 gap-4 justify-center">
                     <div class="bg-blue-600 text-white w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 shadow-lg"><i class="fas fa-mobile-alt text-xl"></i></div>
                     <div>
-                        <h4 class="font-bold text-blue-900 mb-2 uppercase font-bold tracking-widest text-sm">操作建議備註</h4>
-                        <p class="text-xs text-blue-800/80 leading-relaxed font-medium">建議同仁使用 <span class="font-bold border-b-2 border-blue-300 text-blue-900 uppercase font-bold tracking-widest">Google Chrome</span> 或 <span class="font-bold border-b-2 border-blue-300 text-blue-900 uppercase font-bold tracking-widest">Safari</span> 以便縮放頁面與教材。</p>
+                        <h4 class="font-bold text-blue-900 mb-2 uppercase font-bold tracking-widest text-sm text-center md:text-left">操作建議備註</h4>
+                        <p class="text-xs text-blue-800/80 leading-relaxed font-medium uppercase font-bold tracking-widest text-center md:text-left">建議同仁使用 <span class="font-bold border-b-2 border-blue-300 text-blue-900 uppercase font-bold tracking-widest">Google Chrome</span> 或 <span class="font-bold border-b-2 border-blue-300 text-blue-900 uppercase font-bold tracking-widest">Safari</span> 以便縮放頁面與教材。</p>
                     </div>
                 </div>
             </div>
@@ -365,7 +367,13 @@
 
     <!-- 簽名 Overlay -->
     <div id="sig-overlay">
-        <div class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-[10001] pointer-events-none"><div class="bg-black/70 text-white text-[10px] px-6 py-2 rounded-full pointer-events-auto backdrop-blur-md font-bold tracking-wider border border-white/10 shadow-2xl">請橫向旋轉手機進行簽署</div><div class="flex space-x-4 pointer-events-auto"><button onclick="clearCanvas()" class="bg-red-500 text-white px-8 py-3 rounded-2xl text-sm font-bold shadow-2xl active:scale-95 uppercase font-bold tracking-widest">清除</button><button onclick="finishSignature()" class="bg-[#1a4d2e] text-white px-8 py-3 rounded-2xl text-sm font-bold shadow-2xl active:scale-95 uppercase font-bold tracking-widest">完成</button></div></div>
+        <div class="absolute top-0 left-0 w-full p-6 flex justify-between items-center z-[10001] pointer-events-none">
+            <div class="bg-black/70 text-white text-[10px] px-6 py-2 rounded-full pointer-events-auto backdrop-blur-md font-bold tracking-wider">請橫向旋轉手機進行簽署</div>
+            <div class="flex space-x-4 pointer-events-auto">
+                <button onclick="clearCanvas()" class="bg-red-500 text-white px-8 py-3 rounded-2xl text-sm font-bold shadow-2xl active:scale-95 uppercase font-bold tracking-widest text-center">清除</button>
+                <button onclick="finishSignature()" class="bg-[#1a4d2e] text-white px-8 py-3 rounded-2xl text-sm font-bold shadow-2xl active:scale-95 uppercase font-bold tracking-widest text-center">完成</button>
+            </div>
+        </div>
         <div id="sig-canvas-container" class="flex-1 flex items-center justify-center overflow-hidden bg-gray-50/50"><canvas id="sig-canvas"></canvas></div>
     </div>
 
@@ -374,30 +382,20 @@
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { initializeFirestore, collection, addDoc, onSnapshot, query, serverTimestamp, updateDoc, doc, deleteDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // 設定圖片與備用路徑邏輯
+        // 設定圖片
         const setImages = () => {
             const mappings = {
                 'img-logo': imagePaths.logo,
                 'img-safetySop': imagePaths.safetySop,
                 'img-harassment': imagePaths.harassment,
                 'img-hocl': imagePaths.hocl,
-                'img-hocl-safety': imagePaths.hocl_safety,
                 'img-alcohol': imagePaths.alcohol,
-                'img-alcohol-safety': imagePaths.alcohol_safety,
                 'img-fireExt': imagePaths.fireExt,
                 'img-fireAlarm': imagePaths.fireAlarm
             };
             Object.entries(mappings).forEach(([id, path]) => {
                 const el = document.getElementById(id);
-                if(el) {
-                    el.src = path;
-                    el.onerror = () => {
-                        // 自動嘗試切換副檔名 (jpg <-> png)
-                        const altPath = path.includes('.png') ? path.replace('.png', '.jpg') : path.replace('.jpg', '.png');
-                        el.src = altPath;
-                        el.onerror = null; // 防止無限迴圈
-                    };
-                }
+                if(el) el.src = path;
             });
         };
         setImages();
@@ -410,19 +408,20 @@
         const canvas = document.getElementById('sig-canvas'), ctx = canvas.getContext('2d'), overlay = document.getElementById('sig-overlay');
         let isDrawing = false, lastSigData = null, isAdmin = false, isAuthReady = false;
 
+        // Modal 控制
         const mO = document.getElementById('admin-modal-overlay'), pI = document.getElementById('admin-password'), pW = document.getElementById('password-wrapper'), eM = document.getElementById('modal-error'), mT = document.getElementById('modal-title'), mD = document.getElementById('modal-desc'), mI = document.getElementById('modal-icon'), mIB = document.getElementById('modal-icon-bg'), mCB = document.getElementById('modal-confirm-btn');
 
         window.showSystemModal = (type, title, desc, callback) => {
             mO.style.display = 'flex'; setTimeout(() => mO.classList.add('modal-active'), 10);
             mT.innerText = title; mD.innerText = desc; eM.classList.add('hidden');
             if (type === 'admin') {
-                pW.classList.remove('hidden'); mI.className = "fas fa-user-shield text-2xl"; mIB.className = "w-16 h-16 brand-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"; mCB.className = "flex-1 py-3.5 brand-bg text-white rounded-2xl font-bold text-sm shadow-lg active:scale-95 uppercase font-bold tracking-widest"; mCB.innerText = "驗證"; mCB.onclick = () => verifyAdmin(); pI.focus();
+                pW.classList.remove('hidden'); mI.className = "fas fa-user-shield text-2xl"; mIB.className = "w-16 h-16 brand-bg rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"; mCB.innerText = "驗證"; mCB.onclick = () => verifyAdmin(); pI.focus();
             } else if (type === 'warning') {
-                pW.classList.add('hidden'); mI.className = "fas fa-exclamation-triangle text-2xl"; mIB.className = "w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"; mCB.className = "flex-1 py-3.5 bg-amber-600 text-white rounded-2xl font-bold text-sm shadow-lg active:scale-95 uppercase font-bold tracking-widest"; mCB.innerText = "確認"; mCB.onclick = () => closeAdminModal();
+                pW.classList.add('hidden'); mI.className = "fas fa-exclamation-triangle text-2xl"; mIB.className = "w-16 h-16 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"; mCB.innerText = "確認"; mCB.onclick = () => closeAdminModal();
             } else if (type === 'success') {
-                pW.classList.add('hidden'); mI.className = "fas fa-check-circle text-2xl"; mIB.className = "w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"; mCB.className = "flex-1 py-3.5 bg-green-600 text-white rounded-2xl font-bold text-sm shadow-lg active:scale-95 uppercase font-bold tracking-widest"; mCB.innerText = "完成"; mCB.onclick = () => { closeAdminModal(); if(callback) callback(); };
+                pW.classList.add('hidden'); mI.className = "fas fa-check-circle text-2xl"; mIB.className = "w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"; mCB.innerText = "完成"; mCB.onclick = () => { closeAdminModal(); if(callback) callback(); };
             } else if (type === 'delete') {
-                pW.classList.add('hidden'); mI.className = "fas fa-trash-alt text-2xl"; mIB.className = "w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"; mCB.className = "flex-1 py-3.5 bg-red-600 text-white rounded-2xl font-bold text-sm shadow-lg active:scale-95 uppercase font-bold tracking-widest"; mCB.innerText = "確認刪除"; mCB.onclick = () => { if(callback) callback(); closeAdminModal(); };
+                pW.classList.add('hidden'); mI.className = "fas fa-trash-alt text-2xl"; mIB.className = "w-16 h-16 bg-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white shadow-lg"; mCB.innerText = "確認刪除"; mCB.onclick = () => { if(callback) callback(); closeAdminModal(); };
             }
         };
 
@@ -439,6 +438,7 @@
         };
         pI.addEventListener('keypress', (e) => { if (e.key === 'Enter') verifyAdmin(); });
 
+        // 簽名功能
         window.openSignature = () => { if(!document.getElementById('userName').value.trim()) return showSystemModal('warning', '提示', '請先輸入姓名！'); overlay.style.display = 'flex'; resizeCanvas(); };
         function resizeCanvas() { const isP = window.innerHeight > window.innerWidth; canvas.width = isP ? window.innerHeight : window.innerWidth; canvas.height = isP ? window.innerWidth : window.innerHeight; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.lineWidth = 5; ctx.strokeStyle = '#1a4d2e'; }
         const getPos = (e) => { const r = canvas.getBoundingClientRect(); let cX = e.clientX || (e.touches && e.touches[0].clientX), cY = e.clientY || (e.touches && e.touches[0].clientY); if (window.innerHeight > window.innerWidth) return { x: cY - r.top, y: r.right - cX }; return { x: cX - r.left, y: cY - r.top }; };
@@ -456,16 +456,21 @@
             try {
                 await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'signatures'), { name, signature: lastSigData, timestamp: serverTimestamp(), supervisorCheck: false });
                 showSystemModal('success', '成功', '紀錄已成功上傳！感謝您的配合。', () => location.reload());
-            } catch (e) { showSystemModal('warning', '失敗', '上傳錯誤：' + e.message); btn.disabled = false; btn.innerHTML = '同步至雲端'; }
+            } catch (e) { showSystemModal('warning', '失敗', '上傳錯誤：' + e.message); btn.disabled = false; btn.innerHTML = '<i class="fas fa-cloud-upload-alt mr-3"></i> 同步至雲端'; }
         };
 
         window.updateCheckStatus = async (id, status) => { if(!isAdmin) return; try { await updateDoc(doc(db, 'artifacts', appId, 'public', 'data', 'signatures', id), { supervisorCheck: status }); } catch (e) {} };
-        window.confirmDelete = (id, name) => { showSystemModal('delete', '確認刪除', `確定要刪除「${name}」的紀錄嗎？`, async () => { try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'signatures', id)); showSystemModal('success', '刪除成功', '紀錄已移除。'); } catch (e) { showSystemModal('warning', '失敗', '權限不足。'); } }); };
+        window.confirmDelete = (id, name) => { showSystemModal('delete', '確認刪除', `確定要刪除「${name}」的紀錄嗎？`, async () => { try { await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', 'signatures', id)); showSystemModal('success', '刪除成功', '紀錄已從雲端移除。'); } catch (e) { showSystemModal('warning', '失敗', '權限不足。'); } }); };
 
         let ds = [];
         const refreshList = () => {
             const list = document.getElementById('signatureList'), now = Date.now(), hY = 182*24*60*60*1000;
-            if (!ds.length) { list.innerHTML = '<tr><td colspan="4" class="px-8 py-20 text-center text-gray-300 italic text-sm">暫無數據</td></tr>'; return; }
+            if (!ds.length) { 
+                list.innerHTML = '<tr><td colspan="4" class="px-8 py-20 text-center text-gray-300 italic text-sm">暫無數據同步</td></tr>'; 
+                document.getElementById('completeCount').innerText = "0";
+                document.getElementById('checkedCount').innerText = "0";
+                return; 
+            }
             const checkedCount = ds.filter(doc => doc.supervisorCheck).length;
             document.getElementById('completeCount').innerText = ds.length;
             document.getElementById('checkedCount').innerText = checkedCount;
@@ -473,11 +478,11 @@
             list.innerHTML = ds.map(d => {
                 const ts = d.timestamp ? d.timestamp.seconds * 1000 : now, isE = (now - ts) > hY;
                 const dStr = d.timestamp ? new Date(ts).toLocaleString('zh-TW', { hour12: false, month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }) : '同步中';
-                return `<tr class="hover:bg-gray-50/50 transition-all border-b border-gray-50">
-                    <td class="px-6 py-8 font-bold text-gray-700 break-words">${d.name}</td>
+                return `<tr class="hover:bg-gray-50/50 transition-all border-b border-gray-50 text-center">
+                    <td class="px-6 py-8 font-bold text-gray-700 break-words text-center">${d.name}</td>
                     <td class="px-6 py-8 text-center">
-                        <div class="bg-white p-2 rounded border shadow-sm overflow-hidden w-full max-w-[240px] h-24 flex items-center justify-center mx-auto">
-                            <img src="${d.signature}" class="max-h-full max-w-full object-contain mix-blend-multiply opacity-95">
+                        <div class="bg-white p-2 rounded border shadow-sm overflow-hidden w-full max-w-[240px] h-24 flex items-center justify-center mx-auto text-center">
+                            <img src="${d.signature}" class="max-h-full max-w-full object-contain mix-blend-multiply opacity-95 text-center">
                         </div>
                     </td>
                     <td class="px-6 py-8 text-[9px] ${isE ? 'expired-date' : 'text-gray-400'} font-medium leading-tight text-center">
@@ -499,7 +504,7 @@
         };
 
         const startSync = async () => {
-            try { await signInAnonymously(auth); isAuthReady = true; onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'signatures'), (snap) => { ds = snap.docs.map(doc => ({ id: doc.id, ...doc.data() })); ds.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0)); refreshList(); }, (err) => { if(err.message.includes("permission")) showSystemModal('warning', '權限不足', '請更新 Firestore Rules。'); }); } catch (e) { console.error("Auth failed", e); }
+            try { await signInAnonymously(auth); isAuthReady = true; onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'signatures'), (snap) => { ds = snap.docs.map(doc => ({ id: doc.id, ...doc.data() })); ds.sort((a, b) => (b.timestamp?.seconds || 0) - (a.timestamp?.seconds || 0)); refreshList(); }, (err) => { if(err.message.includes("permission")) showSystemModal('warning', '資料庫權限不足', '請務必更新 Firestore Rules。'); }); } catch (e) { console.error("Auth failed", e); }
         };
         startSync();
     </script>
